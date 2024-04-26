@@ -24,7 +24,15 @@ const ApplicationSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    imageUrl: String,
+    imageUrlBefore: {
+        type:String,
+        required:true,
+    },
+    imageUrlAfter: {
+        type:String,
+        required:true,
+        default: 'пусто',
+    },
 },{
     timestamps:true,
 })
