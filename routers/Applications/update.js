@@ -10,6 +10,7 @@ export const update = async(req,res) =>{
             title: req.body.title,
             text:req.body.text,
             teg:req.body.teg,
+            status:req.body.status,
             user:req.userId,
             imageUrlBefore:req.body.imageUrlBefore,
             imageUrlAfter:req.body.imageUrlAfter,

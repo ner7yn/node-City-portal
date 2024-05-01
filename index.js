@@ -1,9 +1,11 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './swagger.js';
 import mongoose from 'mongoose';
 import { loginValidation, registerValidation, applicationValidation } from './validations.js';
 import { registration, getAll, getOne, remove,update,create,me,login,uploads} from './routers/routers.js';
 import { upload, handleValidationErrors, checkAuth } from './utils/utils.js';
-
+import cors from 'cors';
 
 mongoose
 .connect('mongodb+srv://admin:admin@cluster0.yya2lqn.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
@@ -13,7 +15,9 @@ mongoose
  
 const app = express();
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/uploads',express.static('uploads'));
 

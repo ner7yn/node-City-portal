@@ -29,7 +29,7 @@ export const login = async (req, res) => {
         }
         );
         
-        const {passwordHash, ... userData} = user._doc;
+        const {passwordHash,createdAt,updatedAt,__v,email, ... userData} = user._doc;
 
         res.json({
             ...userData,

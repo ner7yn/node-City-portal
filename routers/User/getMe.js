@@ -9,7 +9,7 @@ export const me = async(req, res) => {
             })
         }
 
-        const {passwordHash, ... userData} = user._doc;
+        const {passwordHash,createdAt,updatedAt,__v, ... userData} = user._doc;
 
         res.json(userData);
     }catch (err){
