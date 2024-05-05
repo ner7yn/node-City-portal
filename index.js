@@ -1,9 +1,9 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from './swagger.js';
+import swaggerDocument from './swagger-output.json' assert { type: 'json' };
 import mongoose from 'mongoose';
 import { loginValidation, registerValidation, applicationValidation } from './validations.js';
-import { registration, getAll, getOne, remove,update,create,me,login,uploads} from './routers/routers.js';
+import { registration, getAll, getOne, remove,update,create,me,login,uploads, getMeAll} from './routers/routers.js';
 import { upload, handleValidationErrors, checkAuth } from './utils/utils.js';
 import cors from 'cors';
 
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/uploads',express.static('uploads'));
 
@@ -30,6 +30,8 @@ app.post('/auth/register',registerValidation,handleValidationErrors, registratio
 app.get('/auth/me',checkAuth, me);
 
 app.get('/applications', getAll);
+
+app.get('/MyApplications', checkAuth, getMeAll)
 
 app.get('/applications/:id', getOne);
 

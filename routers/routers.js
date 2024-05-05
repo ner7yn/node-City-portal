@@ -7,3 +7,4 @@ export { me } from './User/getMe.js';
 export { login } from './User/login.js';
 export {registration} from './User/register.js';
 export {uploads} from './upload.js';
+export {getMeAll} from './Applications/getMeAll.js';

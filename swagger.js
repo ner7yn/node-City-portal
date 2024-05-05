@@ -1,20 +1,18 @@
+import swaggerAutogen from 'swagger-autogen';
 import swaggerUi from 'swagger-ui-express';
-import swaggerJSDoc from 'swagger-jsdoc';
 
-
-const swaggerSpec = {
-    openapi: '3.0.0',
-    info: {
-      title: 'Мое API',
-      version: '1.0.0',
-      description: 'Описание API',
-    },
-    servers: [
-      {
-        url: 'http://localhost:5000',
-      },
-    ],
-  apis: ['./index.js'], // Путь к файлам, содержащим ваши маршруты
+const doc = {
+  info: {
+    title: 'My API',
+    description: 'Description',
+  },
+  host: 'localhost:5000',
+  schemes: ['http'],
 };
 
-export default swaggerSpec;
+const outputFile = './swagger-output.json';
+const endpointsFiles = ['./index.js']; // Путь к вашему основному файлу приложения
+
+swaggerAutogen()(outputFile, endpointsFiles, doc).then(async () => {
+  await import('./index.js'); // Ваш основной файл приложения, который требуется импортировать
+});

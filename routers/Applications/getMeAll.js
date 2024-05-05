@@ -1,9 +1,9 @@
 import ApplicationModel from "../../models/Application.js";
 
-export const getAll = async(req,res) =>{
+export const getMeAll = async(req,res) =>{
     try{
-            const applications = await ApplicationModel.find().populate('user').exec();
-            
+        const userId = req.userId;
+        const applications = await ApplicationModel.find({ user: userId }).exec();
             res.json(applications);
     }catch(err){
         console.log(err);
