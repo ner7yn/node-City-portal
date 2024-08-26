@@ -1,14 +1,18 @@
 import ApplicationModel from "../../models/Application.js";
 
-export const getMeAll = async(req,res) =>{
-    try{
+export const getMeAll = async (req, res) => {
+    try {
         const userId = req.userId;
-        const applications = await ApplicationModel.find({ user: userId }).exec();
-            res.json(applications);
-    }catch(err){
+        // Находим заявки только текущего пользователя и популируем данные категории
+        const applications = await ApplicationModel.find({ user: userId })
+            .populate('teg', 'name')  // Получаем только имя категории
+            .exec();
+
+        res.json(applications);
+    } catch (err) {
         console.log(err);
         res.status(500).json({
-            massage: "Не удалось получить статьи",
-         });
+            message: "Не удалось получить статьи",
+        });
     }
-}
+};

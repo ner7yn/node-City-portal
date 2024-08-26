@@ -1,5 +1,6 @@
 export const uploads = (req,res)=>{
-    res.json({
-        url:`/uploads/${req.file.originalname}`,
-    })
+    const file = req.files[0];
+  res.json({
+    url: `/uploads/${file.originalname}`,
+  });
 }

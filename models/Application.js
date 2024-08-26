@@ -1,22 +1,23 @@
 import mongoose from 'mongoose';
 
 const ApplicationSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required:true,
+    title: {
+        type: String,
+        required: true,
     },
-    text:{
-        type:String,
-        required:true,
+    text: {
+        type: String,
+        required: true,
     },
-    teg:{
-        type:String,
-        required:true,
+    teg: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true,
     },
-    status:{
-        type:String,
-        required:true,
-        enum:['Новая','Решена','Отклонена'],
+    status: {
+        type: String,
+        required: true,
+        enum: ['Новая', 'Решена', 'Отклонена'],
         default: 'Новая',
     },
     user: {
@@ -25,16 +26,16 @@ const ApplicationSchema = new mongoose.Schema({
         required: true,
     },
     imageUrlBefore: {
-        type:String,
-        required:true,
+        type: String,
+        required: true,
     },
     imageUrlAfter: {
-        type:String,
-        required:true,
+        type: String,
+        required: true,
         default: 'пусто',
     },
-},{
-    timestamps:true,
+}, {
+    timestamps: true,
 })
 
-export default mongoose.model('Application',ApplicationSchema);
+export default mongoose.model('Application', ApplicationSchema);

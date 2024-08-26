@@ -5,7 +5,7 @@ export const create = async(req,res) => {
             const doc = new ApplicationModel({
                 title: req.body.title,
                 text:req.body.text,
-                teg:req.body.teg,
+                teg:req.body.tegId,
                 user:req.userId,
                 imageUrlBefore:req.body.imageUrlBefore,
             })
