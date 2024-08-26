@@ -13,10 +13,13 @@ mongoose
     .then(() => { console.log('DB good') })
     .catch((err) => { console.log('DB error', err) });
 
-
 const app = express();
 
-app.use(cors());
+// Настройка CORS для разрешения доступа только с https://react-city-portal.onrender.com
+app.use(cors({
+    origin: 'https://react-city-portal.onrender.com',
+}));
+
 app.use(express.json());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -32,7 +35,7 @@ app.get('/auth/me', checkAuth, me);
 
 app.get('/applications', getAll);
 
-app.get('/MyApplications', checkAuth, getMeAll)
+app.get('/MyApplications', checkAuth, getMeAll);
 
 app.get('/applications/:id', getOne);
 
@@ -44,7 +47,7 @@ app.patch('/applications/:id', checkAuth, applicationValidation, handleValidatio
 
 app.post('/category', checkAuth, handleValidationErrors, createCategory);
 
-app.get('/category',getAllCategory);
+app.get('/category', getAllCategory);
 
 app.delete('/category/:id', checkAuth, removeCategory);
 
@@ -53,6 +56,4 @@ app.listen(5000, (err) => {
         return console.log(err);
     }
     return console.log("Server good");
-})
-
-
+});
