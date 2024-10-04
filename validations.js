@@ -28,7 +28,6 @@ export const loginValidation = [
 export const applicationValidation = [
     body('title','Введите заголовок заявки').isLength({min:5}).isString(),
     body('text', 'Введите описание заявки').isLength({min:20}).isString(),
-    body('teg', 'Такого тега нету'),
     body('imageUrlBefore', 'Неверная ссылка на изображение').isString(),
     body('imageUrlAfter', 'Неверная ссылка на изображение').optional().isString(),
 ];

@@ -7,7 +7,9 @@ export const create = async(req,res) => {
                 text:req.body.text,
                 teg:req.body.tegId,
                 user:req.userId,
+                status:req.status,
                 imageUrlBefore:req.body.imageUrlBefore,
+                imageUrlAfter:req.imageUrlAfter
             })
 
             const post = await doc.save();
