@@ -17,7 +17,7 @@ const app = express();
 
 // Настройка CORS для разрешения доступа только с https://react-city-portal.onrender.com
 app.use(cors({
-    origin: 'localhost:5000',
+    origin: 'https://react-city-portal.onrender.com',
 }));
 
 app.use(express.json());
